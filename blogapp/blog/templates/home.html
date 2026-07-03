@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'create_blog' %}">
+    <button>Create Blog</button>
+</a>
+
+<h1>Latest Blogs</h1>
+
+{% comment %} <p>This is our homepage.</p> {% endcomment %}
+
+{% for blog in blogs %}
+<div class="blog-card">
+    <div class="blog-card">
+        {% if blog.image %}
+        <img src="{{ blog.image.url }}" width="300">
+        {% endif %}
+    </div>
+    <h2>{{blog.title}}</h2>
+    <p>
+        <strong>Author : </strong>{{ blog.author }}
+    </p>
+    <p>
+        {{blog.content|truncatewords:30}}
+    </p>
+    <p>
+        {{ blog.created_at }}
+    </p>
+</div>
+
+<hr>
+
+{% empty %}
+
+<h2>No Blogs Found</h2>
+
+{% endfor %}
+
+{% endblock %}
