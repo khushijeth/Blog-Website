@@ -6,39 +6,52 @@ Home
 
 {% block content %}
 
-<a href="{% url 'create_blog' %}">
-    <button>Create Blog</button>
-</a>
+<div class="header">
 
-<h1>Latest Blogs</h1>
+    <h1>Latest Blogs</h1>
 
-{% comment %} <p>This is our homepage.</p> {% endcomment %}
+    <a href="{% url 'create_blog' %}" class="btn">
+        Create Blog
+    </a>
 
-{% for blog in blogs %}
-<div class="blog-card">
-    <div class="blog-card">
-        {% if blog.image %}
-        <img src="{{ blog.image.url }}" width="300">
-        {% endif %}
-    </div>
-    <h2>{{blog.title}}</h2>
-    <p>
-        <strong>Author : </strong>{{ blog.author }}
-    </p>
-    <p>
-        {{blog.content|truncatewords:30}}
-    </p>
-    <p>
-        {{ blog.created_at }}
-    </p>
 </div>
 
-<hr>
+{% if blogs %}
 
-{% empty %}
+    {% for blog in blogs %}
 
-<h2>No Blogs Found</h2>
+    <div class="blog-card">
 
-{% endfor %}
+        {% if blog.image %}
+            <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+        {% endif %}
+
+        <div class="blog-content">
+
+            <h2>{{ blog.title }}</h2>
+
+            <p class="author">
+                By {{ blog.author }}
+            </p>
+
+            <p>
+                {{ blog.content|truncatewords:25 }}
+            </p>
+
+            <p class="date">
+                {{ blog.created_at }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<h2>No Blogs Available</h2>
+
+{% endif %}
 
 {% endblock %}

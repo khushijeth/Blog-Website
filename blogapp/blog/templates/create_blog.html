@@ -6,13 +6,44 @@ Create Blog
 
 {% block content %}
 
-<h1>Create Blog</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">
-        Publish Blog
-    </button>
-</form>
-{% endblock %}
+<div class="form-container">
 
+    <h1 class="form-heading">Create New Blog</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="form-card">
+
+            <div class="form-group">
+                <label>Title</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                {{ form.author }}
+            </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                {{ form.image }}
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                {{ form.content }}
+            </div>
+
+            <button type="submit" class="button">
+                Publish Blog
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
