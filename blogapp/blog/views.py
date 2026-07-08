@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from . models import Blog 
 from . forms import BlogForm
@@ -29,3 +29,9 @@ def create_blog(request):
     }
 
     return render(request,"create_blog.html",context)
+
+def blog_detail(request,id):
+    blog=get_object_or_404(Blog,id=id)
+    return render(request,"blog_detail.html",{
+        "blog":blog
+    })
