@@ -32,6 +32,25 @@ def create_blog(request):
 
 def blog_detail(request,id):
     blog=get_object_or_404(Blog,id=id)
-    return render(request,"blog_detail.html",{
-        "blog":blog
-    })
+
+    return render(request,"blog_detail.html",{"blog":blog})
+
+
+def update_blog(request,id):
+    blog=get_object_or_404(Blog,id=id)
+
+    if request.method == "POST":
+        form = BlogForm(
+            request.POST,
+            request.FILES,
+            instance=blog
+        )
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        
+    else:
+        form = BlogForm(instance = blog)
+    
+    return render(request,"create_blog.html",{"form":form})
+
