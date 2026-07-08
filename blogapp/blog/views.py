@@ -54,3 +54,11 @@ def update_blog(request,id):
     
     return render(request,"create_blog.html",{"form":form})
 
+
+def delete_blog(request,id):
+    blog = get_object_or_404(Blog,id=id)
+    if request.method == "POST":
+        blog.delete()
+        return redirect("home")
+    
+    return render(request,"delete_blog.html",{"blog":blog})

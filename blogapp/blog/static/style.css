@@ -215,6 +215,60 @@ main{
     text-align: justify;
 }
 
+/* Action Buttons */
+
+.card-actions{
+    display:flex;
+    gap:10px;
+    /* margin-top:5px; */
+}
+
+/* Common Button Style */
+
+.card-actions .btn{
+    text-decoration:none;
+    color:white;
+    padding:10px 10px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+    transition:0.3s ease;
+    display:inline-block;
+}
+
+/* Read */
+
+.read-btn{
+    background:#2563eb;
+}
+
+.read-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* Edit */
+
+.edit-btn{
+    background:#16a34a;
+}
+
+.edit-btn:hover{
+    background:#15803d;
+    transform:translateY(-2px);
+}
+
+/* Delete */
+
+.delete-btn{
+    background:#dc2626;
+}
+
+.delete-btn:hover{
+    background:#b91c1c;
+    transform:translateY(-2px);
+}
+
 /* Footer */
 
 footer{

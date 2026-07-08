@@ -42,10 +42,21 @@ Home
                 {{ blog.created_at }}
             </p>
 
+            <div class="card-actions">
 
-            <a href="{% url 'blog_detail' blog.id %}" class="btn">
-                Read More
-            </a>
+                <a href="{% url 'blog_detail' blog.id %}" class="btn read-btn">
+                    Read More
+                </a>
+
+                <a href="{% url 'update_blog' blog.id %}" class="btn edit-btn">
+                    Edit
+                </a>
+
+                <a href="{% url 'delete_blog' blog.id %}" class="btn delete-btn">
+                    Delete
+                </a>
+
+            </div>
 
         </div>
 
