@@ -8,7 +8,8 @@ class BlogForm(forms.ModelForm):
         model = Blog
         fields = [
             "title",
-            "author",
+            # author is removed because don't want users to choose the author anymore
+            # "author",
             "image",
             "content",
         ]

@@ -31,7 +31,7 @@ Home
             <h2>{{ blog.title }}</h2>
 
             <p class="author">
-                By {{ blog.author }}
+                By {{ blog.author.username }}
             </p>
 
             <p>
@@ -48,13 +48,15 @@ Home
                     Read More
                 </a>
 
-                <a href="{% url 'update_blog' blog.id %}" class="btn edit-btn">
-                    Edit
-                </a>
+                {% if user == blog.author %}
+                    <a href="{% url 'update_blog' blog.id %}" class="btn edit-btn">
+                        Edit
+                    </a>
 
-                <a href="{% url 'delete_blog' blog.id %}" class="btn delete-btn">
-                    Delete
-                </a>
+                    <a href="{% url 'delete_blog' blog.id %}" class="btn delete-btn">
+                        Delete
+                    </a>
+                {% endif %}
 
             </div>
 

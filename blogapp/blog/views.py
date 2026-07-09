@@ -23,7 +23,9 @@ def create_blog(request):
         form = BlogForm(request.POST,request.FILES)
         
         if form.is_valid():
-            form.save()
+            blog = form.save(commit=False)
+            blog.author = request.user
+            blog.save()
             return redirect('home')
     else:
         form = BlogForm()
@@ -34,7 +36,7 @@ def create_blog(request):
 
     return render(request,"create_blog.html",context)
 
-@login_required
+# @login_required
 def blog_detail(request,id):
     blog=get_object_or_404(Blog,id=id)
 
@@ -42,7 +44,7 @@ def blog_detail(request,id):
 
 @login_required
 def update_blog(request,id):
-    blog=get_object_or_404(Blog,id=id)
+    blog=get_object_or_404(Blog,id=id,author=request.user)
 
     if request.method == "POST":
         form = BlogForm(
@@ -61,7 +63,7 @@ def update_blog(request,id):
 
 @login_required
 def delete_blog(request,id):
-    blog = get_object_or_404(Blog,id=id)
+    blog = get_object_or_404(Blog,id=id,author=request.user)
     if request.method == "POST":
         blog.delete()
         return redirect("home")
