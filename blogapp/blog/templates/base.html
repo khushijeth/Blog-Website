@@ -17,16 +17,28 @@
 
     <!-- Navbar -->
     <nav>
-        <a href="/">Home</a>
-        <a href="#">Blogs</a>
-        <a href="#">Categories</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="#">Blogs</a>
+            <a href="#">Categories</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <span class="username">
+                    {{user.username}}
+                </span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}"> Register</a>
+            {% endif %}
 
-        <span style="float:right;">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-        </span>
+        </div>
     </nav>
 
     <hr>
