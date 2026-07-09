@@ -214,6 +214,7 @@ main{
     background:#0a76a5;
 }
 
+
 /* blog_detail.html page */
 .detail-card{
     max-width: 900px;
@@ -294,6 +295,47 @@ main{
 .delete-btn:hover{
     background:#b91c1c;
     transform:translateY(-2px);
+}
+
+/* Search Bar */
+
+.search-form{
+    display:flex;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.search-form input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    /* margin: 5px; */
+}
+
+.search-form input:focus{
+    outline:none;
+    border-color:#38bdf8;
+}
+
+.search-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2e69bb;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.search-btn:hover{
+    background:#0a76a5;
+}
+
+.result-count{
+    margin-bottom: 20px;
+    color: #442c2c;
 }
 
 /* Footer */

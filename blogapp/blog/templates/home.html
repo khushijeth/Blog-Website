@@ -16,6 +16,22 @@ Home
 
 </div>
 
+<form method="GET" class="search-form">
+    <input 
+        type="text"
+        name="q"
+        placeholder="Search Blogs...."
+        value="{{ query|default:'' }}"
+    >
+    <button type="submit" class="search-btn">
+        Search
+    </button>
+</form>
+
+<p class="result-count">
+    {{ blogs|length }} 
+</p>
+
 {% if blogs %}
 
     {% for blog in blogs %}

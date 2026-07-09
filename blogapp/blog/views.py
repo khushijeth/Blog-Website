@@ -5,15 +5,25 @@ from . forms import BlogForm , RegisterForm
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 
 # Create your views here.
 # def home(request):
 #     return HttpResponse("Hello User !!")
 def home(request):
+    query = request.GET.get("q")
     blogs=Blog.objects.all().order_by("-created_at")
 
+    if query:
+        blogs = blogs.filter(
+            # you combine multiple search conditions using OR(|) optr
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        )
+
     context={
-        'blogs':blogs
+        'blogs':blogs, "query":query
     }
     return render(request,"home.html",context)
 
